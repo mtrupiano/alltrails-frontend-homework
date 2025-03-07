@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { Manrope } from "next/font/google";
 import "./globals.css";
+
+const manrope500 = Manrope({ weight: "500" });
 
 export const metadata: Metadata = {
   title: "",
