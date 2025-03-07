@@ -16,7 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={manrope500.className + " min-w-[375px]"}>
+        {children}
+      </body>
     </html>
   );
 }
