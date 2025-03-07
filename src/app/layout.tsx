@@ -5,8 +5,8 @@ import "./globals.css";
 const manrope500 = Manrope({ weight: "500" });
 
 export const metadata: Metadata = {
-  title: "",
-  description: "",
+  title: "AllTrails at lunch",
+  description: "AllTrails frontend homework, simple restaurant search",
 };
 
 export default function RootLayout({
