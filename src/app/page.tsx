@@ -43,13 +43,13 @@ export default function Home() {
                 <div className="flex justify-center space-x-2">
                   {smallScreenShowMap ? (
                     <>
-                      <MapIcon fill="white" />
-                      <span className="font-bold text-white">Map</span>
+                      <ListIcon fill="white" />
+                      <span className="font-bold text-white">List</span>
                     </>
                   ) : (
                     <>
-                      <ListIcon fill="white" />
-                      <span className="font-bold text-white">List</span>
+                      <MapIcon fill="white" />
+                      <span className="font-bold text-white">Map</span>
                     </>
                   )}
                 </div>
