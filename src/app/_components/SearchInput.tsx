@@ -5,6 +5,7 @@ import { useMap } from "@vis.gl/react-google-maps";
 import { searchAction } from "@/app/actions";
 import SearchIcon from "@/assets/icons/search.svg";
 import { SearchResultsContext } from "../context/SearchResultsContext";
+import Spinner from "./Spinner";
 
 export default function SearchInput() {
   const [isLoading, setIsLoading] = useState(false);
@@ -49,6 +50,11 @@ export default function SearchInput() {
           className="block w-[353px] sm:w-[327px] p-4 ps-10 h-[32px] text-[13px] bg-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-green-house-900 transition ease-in-out duration-150"
         />
       </div>
+      {isLoading && (
+        <div className="w-full h-full fixed top-0 left-0 bg-white opacity-75 z-50 flex justify-center items-center">
+          <Spinner />
+        </div>
+      )}
     </form>
   );
 }
