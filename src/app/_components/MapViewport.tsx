@@ -42,7 +42,7 @@ export default function MapViewport() {
       clickableIcons={false}
       reuseMaps={true}
     >
-      {searchResults?.results.map((place, idx) => (
+      {searchResults?.results?.map((place, idx) => (
         <MapMarker
           key={`marker-${place.place_id}`}
           placeData={place}

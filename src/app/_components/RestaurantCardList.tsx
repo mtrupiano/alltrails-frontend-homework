@@ -31,21 +31,21 @@ export default function RestaurantCardList() {
 
   return (
     <div className="h-full w-full sm:w-[480px] bg-gray-200 overflow-y-auto no-scrollbar px-6 py-8 space-y-6">
-      {!searchResults && (
+      {!searchResults.status && (
         <div className="flex justify-center items-center">
           <span className="text-gray-400">Search for restaurants</span>
         </div>
       )}
 
-      {!!searchResults &&
-        searchResults?.status !== "OK" &&
-        (searchResults?.status === "ZERO_RESULTS" ? (
+      {searchResults.status &&
+        searchResults.status !== "OK" &&
+        (searchResults.status === "ZERO_RESULTS" ? (
           <div>Oops, we found no results for that search.</div>
         ) : (
           <div>Oops, something went wrong.</div>
         ))}
 
-      {searchResults?.results.map((place) => (
+      {searchResults?.results?.map((place) => (
         <RestaurantCard key={place.place_id} placeData={place} />
       ))}
 
