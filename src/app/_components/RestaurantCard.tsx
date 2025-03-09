@@ -24,19 +24,24 @@ export default function RestaurantCard({ placeData }: { placeData: Place }) {
   // TODO: implement with a database instead
   const [isBookmarked, setIsBookmarked] = useState(false);
   useEffect(() => {
-    if (localStorage.getItem(placeData.place_id) === "true") {
+    if (
+      placeData.place_id &&
+      localStorage.getItem(placeData.place_id) === "true"
+    ) {
       setIsBookmarked(true);
     }
     // eslint-disable-next-line
   }, []);
 
   const handleBookmark = () => {
-    if (localStorage.getItem(placeData.place_id) === "true") {
-      localStorage.removeItem(placeData.place_id);
-      setIsBookmarked(false);
-    } else {
-      localStorage.setItem(placeData.place_id, "true");
-      setIsBookmarked(true);
+    if (placeData.place_id) {
+      if (localStorage.getItem(placeData.place_id) === "true") {
+        localStorage.removeItem(placeData.place_id);
+        setIsBookmarked(false);
+      } else {
+        localStorage.setItem(placeData.place_id, "true");
+        setIsBookmarked(true);
+      }
     }
   };
 
@@ -85,9 +90,11 @@ export default function RestaurantCard({ placeData }: { placeData: Place }) {
             </div>
           </div>
         </div>
-        <div>
-          <BookmarkButton enabled={isBookmarked} onClick={handleBookmark} />
-        </div>
+        {placeData?.place_id && (
+          <div>
+            <BookmarkButton enabled={isBookmarked} onClick={handleBookmark} />
+          </div>
+        )}
       </div>
     </div>
   );
