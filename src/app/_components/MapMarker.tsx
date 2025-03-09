@@ -13,12 +13,12 @@ export default function MapMarker({
   placeData: Place;
   fallbackZIndex: number;
 }) {
-  const { setSelectedRestaurant, selectedRestaurant } = useContext(
+  const { updateSelectedRestaurant, selectedRestaurant } = useContext(
     SelectedRestaurantContext,
   );
 
   const handleClick = () => {
-    setSelectedRestaurant(placeData);
+    updateSelectedRestaurant(placeData);
   };
 
   const isSelected = selectedRestaurant?.place_id === placeData.place_id;

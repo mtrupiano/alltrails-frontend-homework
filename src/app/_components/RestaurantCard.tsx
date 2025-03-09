@@ -1,47 +1,33 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import Image from "next/image";
 import { useMap } from "@vis.gl/react-google-maps";
 import { Place } from "@/types/GooglePlacesLegacyApiTypes";
 import StarIcon from "@/assets/icons/star.svg";
 import BookmarkButton from "./BookmarkButton";
 import { SelectedRestaurantContext } from "../context/SelectedRestaurantContext";
+import { BookmarkedRestaurantsContext } from "../context/BookmarkedRestaurantsContext";
 
 const PHOTO_REF_URL = `https://maps.googleapis.com/maps/api/place/photo?key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_LEGACY_API_KEY}&maxheight=72&photo_reference=`;
 
 export default function RestaurantCard({ placeData }: { placeData: Place }) {
   const photoRef = placeData.photos?.[0].photo_reference;
-  const { setSelectedRestaurant } = useContext(SelectedRestaurantContext);
+  const { updateSelectedRestaurant } = useContext(SelectedRestaurantContext);
   const map = useMap();
 
   const handleSelectRestaurant = () => {
-    setSelectedRestaurant(placeData);
+    updateSelectedRestaurant(placeData);
     if (placeData.geometry?.location) {
       map?.setCenter(placeData.geometry.location);
     }
   };
 
-  // Hacky implementation of bookmarking using localStorage
-  // TODO: implement with a database instead
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  useEffect(() => {
-    if (
-      placeData.place_id &&
-      localStorage.getItem(placeData.place_id) === "true"
-    ) {
-      setIsBookmarked(true);
-    }
-    // eslint-disable-next-line
-  }, []);
+  const { bookmarkedRestaurants, handleToggleBookmarkRestaurant } = useContext(
+    BookmarkedRestaurantsContext,
+  );
 
   const handleBookmark = () => {
-    if (placeData.place_id) {
-      if (localStorage.getItem(placeData.place_id) === "true") {
-        localStorage.removeItem(placeData.place_id);
-        setIsBookmarked(false);
-      } else {
-        localStorage.setItem(placeData.place_id, "true");
-        setIsBookmarked(true);
-      }
+    if (placeData?.place_id) {
+      handleToggleBookmarkRestaurant(placeData.place_id);
     }
   };
 
@@ -92,7 +78,10 @@ export default function RestaurantCard({ placeData }: { placeData: Place }) {
         </div>
         {placeData?.place_id && (
           <div>
-            <BookmarkButton enabled={isBookmarked} onClick={handleBookmark} />
+            <BookmarkButton
+              enabled={bookmarkedRestaurants[placeData.place_id]}
+              onClick={handleBookmark}
+            />
           </div>
         )}
       </div>

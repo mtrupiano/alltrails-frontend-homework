@@ -1,9 +1,9 @@
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { createContext, useState } from "react";
 import { Place } from "@/types/GooglePlacesLegacyApiTypes";
 
 type SelectedRestaurantContextType = {
   selectedRestaurant: Place;
-  setSelectedRestaurant: Dispatch<SetStateAction<Place>>;
+  updateSelectedRestaurant: (place: Place) => void;
 };
 export const SelectedRestaurantContext =
   createContext<SelectedRestaurantContextType>(
@@ -19,9 +19,17 @@ export default function SelectedRestaurantContextProvider({
     {} as Place,
   );
 
+  const updateSelectedRestaurant = (place: Place) => {
+    if (place?.place_id === selectedRestaurant?.place_id) {
+      setSelectedRestaurant({} as Place);
+    } else {
+      setSelectedRestaurant(place);
+    }
+  };
+
   return (
     <SelectedRestaurantContext.Provider
-      value={{ selectedRestaurant, setSelectedRestaurant }}
+      value={{ selectedRestaurant, updateSelectedRestaurant }}
     >
       {children}
     </SelectedRestaurantContext.Provider>
