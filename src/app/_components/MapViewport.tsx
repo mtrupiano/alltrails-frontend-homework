@@ -14,13 +14,14 @@ export default function MapViewport() {
   const { searchResults } = useContext(SearchResultsContext);
 
   const map = useMap();
-  const [initialGeocode, setInitialGeocode] = useState();
+  const [initialGeocodeCompleted, setInitialGeocodeCompleted] =
+    useState<boolean>(false);
 
   useEffect(() => {
-    if (!initialGeocode && map) {
+    if (!initialGeocodeCompleted && map) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setInitialGeocode(true);
+          setInitialGeocodeCompleted(true);
           map.setCenter({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
@@ -30,7 +31,7 @@ export default function MapViewport() {
         { enableHighAccuracy: false, maximumAge: Infinity }, // options to speed up initial geolocation
       );
     }
-  }, [map, initialGeocode]);
+  }, [map, initialGeocodeCompleted]);
 
   return (
     <Map
