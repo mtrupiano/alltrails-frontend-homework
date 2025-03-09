@@ -10,16 +10,20 @@ export default function SearchInput() {
   const [isLoading, setIsLoading] = useState(false);
   const map = useMap();
   const { setSearchResults } = useContext(SearchResultsContext);
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     if (isLoading) return;
     setIsLoading(true);
-    event.preventDefault();
+
     const formData = new FormData(event?.currentTarget);
-    const searchText = formData.get("places-api-search");
+    const searchText: string = formData.get("places-api-search") as string; // awkward type cast when relying on FormData
     const searchResults = await searchAction(
       searchText,
-      map?.getCenter()?.toJSON(), // ASSUMES THAT `map` HAS BEEN LOADED BY THE TIME USER HAS ENTERED AND SUBMITTED A SEARCH
+      map?.getCenter()?.toJSON(),
     );
+
     setSearchResults(searchResults);
     setIsLoading(false);
   };

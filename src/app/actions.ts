@@ -3,14 +3,14 @@ const GOOGLE_PLACES_LEGACY_URL = `https://maps.googleapis.com/maps/api/place/tex
 
 export async function searchAction(
   searchText: string,
-  location: { latitude: number; longitude: nubmer },
+  location: google.maps.LatLngLiteral | undefined,
 ) {
   try {
-    const results = await fetch(
-      GOOGLE_PLACES_LEGACY_URL +
-        `&query=${searchText}&location=${location.latitude},${location.longitude}&type=restaurant`,
-    );
-
+    let url = GOOGLE_PLACES_LEGACY_URL + `&query=${searchText}&type=restaurant`;
+    if (location) {
+      url += `&location=${location.lat},${location.lng}`;
+    }
+    const results = await fetch(url);
     return await results.json();
   } catch (error: Error) {
     console.error(error);
