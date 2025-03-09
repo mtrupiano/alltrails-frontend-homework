@@ -3,9 +3,9 @@
 import { useContext } from "react";
 import { useInView } from "react-intersection-observer";
 import RestaurantCard from "./RestaurantCard";
+import RestaurantCardSkeleton from "./RestaurantCardSkeleton";
 import { SearchResultsContext } from "../context/SearchResultsContext";
 import { nextPageSearch } from "../actions";
-import Spinner from "./Spinner";
 
 export default function RestaurantCardList() {
   const { ref: spinnerRef } = useInView({
@@ -51,8 +51,10 @@ export default function RestaurantCardList() {
       ))}
 
       {searchResults?.results?.length && searchResults?.next_page_token && (
-        <div className="h-20 flex justify-center items-center" ref={spinnerRef}>
-          <Spinner />
+        <div ref={spinnerRef} className="space-y-6">
+          <RestaurantCardSkeleton />
+          <RestaurantCardSkeleton />
+          <RestaurantCardSkeleton />
         </div>
       )}
     </div>
