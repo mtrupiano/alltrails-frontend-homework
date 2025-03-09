@@ -15,7 +15,9 @@ export default function RestaurantCard({ placeData }: { placeData: Place }) {
 
   const handleSelectRestaurant = () => {
     setSelectedRestaurant(placeData);
-    map?.setCenter(placeData.geometry?.location);
+    if (placeData.geometry?.location) {
+      map?.setCenter(placeData.geometry.location);
+    }
   };
 
   return (
