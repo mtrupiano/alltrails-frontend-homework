@@ -15,7 +15,8 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen min-w-[375px]">
       <SearchResultsContextProvider>
-        <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
+        {/* TODO: Error handling if environment variable isn't present */}
+        <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}>
           <Navbar />
           <SelectedRestaurantContextProvider>
             <main className="flex flex-1 overflow-auto h-full">
