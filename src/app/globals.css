@@ -10,6 +10,7 @@
   --color-siam: #656e5e;
   --color-green-house-900: #2c5601;
   --color-green-house-950: #183a00;
+  --font-manrope: var(--font-manrope);
 }
 
 @layer utilities {
