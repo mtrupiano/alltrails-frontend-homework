@@ -12,7 +12,7 @@ export async function searchAction(
     }
     const results = await fetch(url);
     return await results.json();
-  } catch (error: Error) {
+  } catch (error) {
     console.error(error);
   }
 }
@@ -22,7 +22,7 @@ export async function nextPageSearch(nextPageToken: string) {
     const url = `${GOOGLE_PLACES_LEGACY_URL}&pagetoken=${nextPageToken}`;
     const results = await fetch(url);
     return await results.json();
-  } catch (error: Error) {
+  } catch (error) {
     console.error(error);
   }
 }
