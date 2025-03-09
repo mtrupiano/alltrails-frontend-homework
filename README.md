@@ -1,4 +1,7 @@
-# AllTrails Frontend Homework ([Mark Trupiano](https://mtru-portfolio-next.netlify.app/))
+![AllTrails at lunch Logo](/src/assets/logo-lockup.svg)
+
+# AllTrails at Lunch (AllTrails Spring 2025 Frontend Homework)
+#### Submitted by [Mark Trupiano](https://mtru-portfolio-next.netlify.app/)
 This is my homework submission for an AllTrails frontend software engineering position (Spring 2025). Please don't hesitate to reach out with any questions or if you have any issues running my project at mtrupiano2@gmail.com. Thank you for your consideration.
 
 ## Deployed
