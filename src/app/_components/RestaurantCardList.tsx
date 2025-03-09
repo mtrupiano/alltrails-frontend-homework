@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import RestaurantCard from "./RestaurantCard";
 import { SearchResultsContext } from "../context/SearchResultsContext";
 import { nextPageSearch } from "../actions";
+import Spinner from "./Spinner";
 
 export default function RestaurantCardList() {
   const { ref: spinnerRef } = useInView({
@@ -51,15 +52,7 @@ export default function RestaurantCardList() {
 
       {searchResults?.results?.length && searchResults?.next_page_token && (
         <div className="h-20 flex justify-center items-center" ref={spinnerRef}>
-          {/* Spinner tailwind classes taken from PrelineUI https://preline.co/docs/spinners.html */}
-          <div
-            className="animate-spin inline-block size-6 border-3 border-current border-t-transparent text-green-600 rounded-full"
-            role="status"
-            aria-label="loading"
-          >
-            {/* span for screen reader only */}
-            <span className="sr-only">Loading...</span>{" "}
-          </div>
+          <Spinner />
         </div>
       )}
     </div>
