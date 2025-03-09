@@ -35,6 +35,9 @@ export type Place = {
   editorial_summary?: PlaceEditorialSummary;
   formatted_address?: string;
   formatted_phone_number?: string;
+  geometry?: Geometry;
+  icon?: string;
+  icon_background_color: string;
   icon_mask_base_uri?: string;
   international_phone_number?: string;
   name?: string;
@@ -63,6 +66,18 @@ export type Place = {
   wheelchair_accessible_entrance?: boolean;
 };
 
+type Geometry = {
+  location: LatLngLiteral;
+  viewport: Bounds;
+};
+type Bounds = {
+  northeast: LatLngLiteral;
+  southwest: LatLngLiteral;
+};
+type LatLngLiteral = {
+  lat: number;
+  lng: number;
+};
 type AddressComponent = {
   long_name: string;
   short_name: string;
