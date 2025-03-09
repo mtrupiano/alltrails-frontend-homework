@@ -10,9 +10,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@vis.gl/react-google-maps": "^1.5.1",
     "next": "15.2.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-intersection-observer": "^9.16.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
