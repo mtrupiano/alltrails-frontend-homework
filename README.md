@@ -15,4 +15,4 @@ https://alltrails-frontend-homework.vercel.app/
 5. Open http://localhost:3000 in browser
 
 ## Attributions
-This is a [Next.js](https://nextjs.org) project was bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and deployed on [Vercel](https://vercel.com/).
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and deployed on [Vercel](https://vercel.com/).
