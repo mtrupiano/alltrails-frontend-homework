@@ -49,7 +49,7 @@ export default function RestaurantCardList() {
         <RestaurantCard key={place.place_id} placeData={place} />
       ))}
 
-      {searchResults?.results.length > 0 && searchResults?.next_page_token && (
+      {searchResults?.results?.length && searchResults?.next_page_token && (
         <div className="h-20 flex justify-center items-center" ref={spinnerRef}>
           {/* Spinner tailwind classes taken from PrelineUI https://preline.co/docs/spinners.html */}
           <div
