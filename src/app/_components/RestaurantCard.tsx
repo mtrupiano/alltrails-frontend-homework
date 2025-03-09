@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { useMap } from "@vis.gl/react-google-maps";
 import { Place } from "@/types/GooglePlacesLegacyApiTypes";
@@ -17,6 +17,26 @@ export default function RestaurantCard({ placeData }: { placeData: Place }) {
     setSelectedRestaurant(placeData);
     if (placeData.geometry?.location) {
       map?.setCenter(placeData.geometry.location);
+    }
+  };
+
+  // Hacky implementation of bookmarking using localStorage
+  // TODO: implement with a database instead
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem(placeData.place_id) === "true") {
+      setIsBookmarked(true);
+    }
+    // eslint-disable-next-line
+  }, []);
+
+  const handleBookmark = () => {
+    if (localStorage.getItem(placeData.place_id) === "true") {
+      localStorage.removeItem(placeData.place_id);
+      setIsBookmarked(false);
+    } else {
+      localStorage.setItem(placeData.place_id, "true");
+      setIsBookmarked(true);
     }
   };
 
@@ -66,7 +86,7 @@ export default function RestaurantCard({ placeData }: { placeData: Place }) {
           </div>
         </div>
         <div>
-          <BookmarkButton enabled={false} />
+          <BookmarkButton enabled={isBookmarked} onClick={handleBookmark} />
         </div>
       </div>
     </div>
