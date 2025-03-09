@@ -21,7 +21,7 @@ export default function Home() {
           <Navbar />
           <BookmarkedRestaurantsContextProvider>
             <SelectedRestaurantContextProvider>
-              <main className="flex flex-1 overflow-auto h-full">
+              <main className="flex flex-1 overflow-auto h-full" role="main">
                 <div
                   className={`${
                     smallScreenShowMap ? "hidden" : "block w-full"
