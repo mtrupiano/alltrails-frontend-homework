@@ -15,10 +15,17 @@ export default function SearchInput() {
     event.preventDefault();
 
     if (isLoading) return;
+    const formData = new FormData(event?.currentTarget);
+    const searchText: string = (
+      formData.get("places-api-search") as string
+    ).trim();
+    // ^awkward type cast when relying on FormData
+
+    if (!searchText) {
+      return;
+    }
     setIsLoading(true);
 
-    const formData = new FormData(event?.currentTarget);
-    const searchText: string = formData.get("places-api-search") as string; // awkward type cast when relying on FormData
     const searchResults = await searchAction(
       searchText,
       map?.getCenter()?.toJSON(),
