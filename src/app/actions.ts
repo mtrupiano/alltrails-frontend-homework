@@ -7,7 +7,7 @@ const GOOGLE_PLACES_LEGACY_URL = `https://maps.googleapis.com/maps/api/place/tex
 export async function searchAction(
   searchText: string,
   location: google.maps.LatLngLiteral | undefined,
-): PlacesTextSearchResponse {
+): Promise<PlacesTextSearchResponse> {
   try {
     let url = GOOGLE_PLACES_LEGACY_URL + `&query=${searchText}&type=restaurant`;
     if (location) {
@@ -18,6 +18,8 @@ export async function searchAction(
   } catch (error) {
     console.error(error);
     return {
+      results: [],
+      html_attributions: [],
       status: "UNKNOWN_ERROR",
     };
   }
@@ -25,7 +27,7 @@ export async function searchAction(
 
 export async function nextPageSearch(
   nextPageToken: string,
-): PlacesTextSearchResponse | null {
+): Promise<PlacesTextSearchResponse | null> {
   try {
     throw new Error("bonk");
     const url = `${GOOGLE_PLACES_LEGACY_URL}&pagetoken=${nextPageToken}`;
@@ -34,6 +36,8 @@ export async function nextPageSearch(
   } catch (error) {
     console.error(error);
     return {
+      results: [],
+      html_attributions: [],
       status: "UNKNOWN_ERROR",
     };
   }
