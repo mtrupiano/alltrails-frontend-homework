@@ -6,16 +6,16 @@ export default function BookmarkButton({
   onClick,
 }: {
   enabled: boolean;
-  onClick: () => void;
+  handleClick: () => void;
 }) {
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    onClick();
+    handleClick();
   };
   return (
     <button
       type="button"
-      onClick={handleClick}
+      onClick={onClick}
       className="hover:bg-gray-100 active:bg-gray-100 transition-all duration-200 cursor-pointer p-2 rounded-full"
     >
       {enabled ? <BookmarkSavedSvg /> : <BookmarkRestingSvg />}

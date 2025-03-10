@@ -85,7 +85,7 @@ export default function RestaurantCard({
           <div>
             <BookmarkButton
               enabled={bookmarkedRestaurants[placeData.place_id]}
-              onClick={handleBookmark}
+              handleClick={handleBookmark}
             />
           </div>
         )}
