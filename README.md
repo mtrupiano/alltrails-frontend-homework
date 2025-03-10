@@ -21,5 +21,26 @@ https://alltrails-frontend-homework.vercel.app/
 ## Testing
 `npm run test`
 
+## Write Up
+Overall I had a great time making this project! I tried adding some bonus fun features while also incorporating all of the functionality I worked out from the designs. I definitely made some autonomous design decisions that if this were an actual work project I would want to discuss with product designers and/or stakeholders, but I think I got all of the major functionality covered.
+
+### NextJS, TypeScript, React, TailwindCSS
+I chose to build this project in NextJS / React with TailwindCSS for styling. The NextJS platform is well documented and requires  minimal configuration for getting a React application up and running. As for styling, I’ve found that TailwindCSS allows for really rapid prototyping compared to relying on a 3rd party component library. It also enforces more uniformity with minimal configuration out-of-the-box as opposed to relying on in-line styles or other styling frameworks.
+
+### Searching
+Calls NextJS server action to hit Google Places (Legacy) API. This is an old version of the API but I chose to still use it to try and stick with the project specifications (as much as I could, see below…). Unfortunately the legacy API does not have any typing libraries available, so I ended up manually writing types for data objects returned from this API as copied from the [API’s documentation](https://developers.google.com/maps/documentation/places/web-service/search-text#text-search-responses).
+
+### Google Maps React
+I had trouble getting the provided API key to work when putting a google map instance in my react app. In order to use the [latest google maps react implementation](https://mapsplatform.google.com/resources/blog/streamline-the-use-of-the-maps-javascript-api-within-your-react-applications/) I had to make my own personal Google Maps API key. Please reach out to me if you need this key.
+
+### State management
+When designing this app I knew I would have to rely on passing around state between components in order to keep track of things like search results and the selected restaurant. I initially started out with state objects but eventually moved to context providers when passing around the state got too unwieldy.
+
+### Bookmarking
+I wanted to implement bookmarking but wanted to avoid creating a database for the sake of minimizing the project’s scope. I chose to use localStorage just as a prototype / proof of concept. I mainly rely on a state object to keep track of bookmarked restaurants while the app is in use but write to localStorage on a slightly less reactive basis (debounced) to avoid excessive writes.
+
+### Infinite scroll pagination
+Using [`react-intersection-observer`](https://www.npmjs.com/package/react-intersection-observer); when the user scrolls to the bottom of the list view the intersection observer will call another server action with a `nextPageToken` to get the next page of search results from the Places API.
+
 ## Attributions
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and deployed on [Vercel](https://vercel.com/).
