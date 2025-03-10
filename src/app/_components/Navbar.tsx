@@ -5,7 +5,7 @@ import SearchInput from "./SearchInput";
 export default function Navbar() {
   return (
     <nav
-      className="w-full h-28 flex flex-wrap justify-center items-center sm:justify-between sm:h-16 border-b-2 border-gray-400 content-evenly px-6"
+      className="w-full h-[112px] flex flex-col flex-wrap space-y-4 justify-center items-center border-b-2 borger-gray-400 px-6 sm:flex-row sm:justify-between sm:h-16 sm:space-y-0"
       role="navigation"
     >
       <Link href="/">
