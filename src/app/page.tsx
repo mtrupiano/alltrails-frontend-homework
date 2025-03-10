@@ -7,10 +7,9 @@ import RestaurantCardList from "@/app/_components/RestaurantCardList";
 import Navbar from "@/app/_components/Navbar";
 import MapViewport from "@/app/_components/MapViewport";
 import ToggleMapListViewButton from "@/app/_components/ToggleMapListViewButton";
-
-import SelectedRestaurantContextProvider from "./context/SelectedRestaurantContext";
-import SearchResultsContextProvider from "./context/SearchResultsContext";
-import BookmarkedRestaurantsContextProvider from "./context/BookmarkedRestaurantsContext";
+import SelectedRestaurantContextProvider from "@/app/context/SelectedRestaurantContext";
+import SearchResultsContextProvider from "@/app/context/SearchResultsContext";
+import BookmarkedRestaurantsContextProvider from "@/app/context/BookmarkedRestaurantsContext";
 
 export default function Home() {
   const [isShowingMap, setIsShowingMap] = useState(false);

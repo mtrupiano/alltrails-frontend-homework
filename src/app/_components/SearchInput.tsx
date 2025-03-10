@@ -5,7 +5,7 @@ import { useMap } from "@vis.gl/react-google-maps";
 
 import { searchAction } from "@/app/actions";
 import SearchIcon from "@/assets/icons/search.svg";
-import { SearchResultsContext } from "../context/SearchResultsContext";
+import { SearchResultsContext } from "@/app/context/SearchResultsContext";
 import Spinner from "./Spinner";
 
 export default function SearchInput() {

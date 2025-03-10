@@ -5,9 +5,9 @@ import { useInView } from "react-intersection-observer";
 import { useMap } from "@vis.gl/react-google-maps";
 
 import { Place } from "@/types/GooglePlacesLegacyApiTypes";
-import { SearchResultsContext } from "../context/SearchResultsContext";
-import { SelectedRestaurantContext } from "../context/SelectedRestaurantContext";
-import { nextPageSearch } from "../actions";
+import { SearchResultsContext } from "@/app/context/SearchResultsContext";
+import { SelectedRestaurantContext } from "@/app/context/SelectedRestaurantContext";
+import { nextPageSearch } from "@/app/actions";
 
 import RestaurantCard from "./RestaurantCard";
 import RestaurantCardSkeleton from "./RestaurantCardSkeleton";

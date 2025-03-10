@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Place } from "@/types/GooglePlacesLegacyApiTypes";
 import StarIcon from "@/assets/icons/star.svg";
 import placeholderImage from "@/assets/images/restaurant-photo-placeholder.png";
-import { BookmarkedRestaurantsContext } from "../context/BookmarkedRestaurantsContext";
+import { BookmarkedRestaurantsContext } from "@/app/context/BookmarkedRestaurantsContext";
 import BookmarkButton from "./BookmarkButton";
 
 const PHOTO_REF_URL = `https://maps.googleapis.com/maps/api/place/photo?key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_LEGACY_API_KEY}&maxheight=72&photo_reference=`;
