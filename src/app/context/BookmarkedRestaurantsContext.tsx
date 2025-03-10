@@ -21,7 +21,7 @@ export default function BookmarkedRestaurantsContextProvider({
 
   const handleToggleBookmarkRestaurant = (placeId: string) => {
     if (bookmarkedRestaurants[placeId]) {
-      // eslint-disable-next-line
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { [placeId]: toRemove, ...rest } = bookmarkedRestaurants;
       setBookmarkedRestaurants(rest);
     } else {
@@ -39,6 +39,7 @@ export default function BookmarkedRestaurantsContextProvider({
     }
   }, []);
 
+  // debounce saving to localStorage to avoid repeated writes
   const timeoutId = useRef<NodeJS.Timeout | null>(null);
   useEffect(() => {
     clearTimeout(timeoutId.current as NodeJS.Timeout);

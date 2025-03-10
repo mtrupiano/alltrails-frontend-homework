@@ -28,7 +28,7 @@ export default function MapMarker({
     <>
       <AdvancedMarker
         position={placeData.geometry?.location}
-        zIndex={isSelected ? 9999 : fallbackZIndex}
+        zIndex={isSelected ? 9999 : fallbackZIndex} // somewhat hacky way to make sure the selected pin is showing 'above' overlapping pins
       >
         <div>
           {isSelected ? (
