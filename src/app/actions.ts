@@ -27,10 +27,14 @@ export async function nextPageSearch(
   nextPageToken: string,
 ): PlacesTextSearchResponse | null {
   try {
+    throw new Error("bonk");
     const url = `${GOOGLE_PLACES_LEGACY_URL}&pagetoken=${nextPageToken}`;
     const results = await fetch(url);
     return await results.json();
   } catch (error) {
     console.error(error);
+    return {
+      status: "UNKNOWN_ERROR",
+    };
   }
 }

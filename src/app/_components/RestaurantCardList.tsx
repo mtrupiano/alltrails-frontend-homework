@@ -31,7 +31,7 @@ export default function RestaurantCardList() {
         setSearchResults((prev) => {
           return {
             ...prev,
-            results: [...prev.results, ...moreResults.results],
+            results: [...prev.results, ...(moreResults.results || [])],
             next_page_token: moreResults.next_page_token,
           };
         });
