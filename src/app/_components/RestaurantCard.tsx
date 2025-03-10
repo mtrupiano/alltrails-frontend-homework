@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { Place } from "@/types/GooglePlacesLegacyApiTypes";
 import StarIcon from "@/assets/icons/star.svg";
+import placeholderImage from "@/assets/images/restaurant-photo-placeholder.png";
 import { BookmarkedRestaurantsContext } from "../context/BookmarkedRestaurantsContext";
 import BookmarkButton from "./BookmarkButton";
 
@@ -54,7 +55,7 @@ export default function RestaurantCard({
             />
           ) : (
             <Image
-              src="/images/restaurant-photo-placeholder.png"
+              src={placeholderImage}
               alt="Restaurant list item placeholder"
               width={64}
               height={72}
