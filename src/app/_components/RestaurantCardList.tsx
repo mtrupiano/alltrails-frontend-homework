@@ -19,23 +19,25 @@ export default function RestaurantCardList() {
   const { ref: skeletonLoaderRef } = useInView({
     onChange: (inView) => {
       if (inView) {
-        (async function () {
-          if (searchResults?.next_page_token) {
-            const moreResults = await nextPageSearch(
-              searchResults.next_page_token,
-            );
-            setSearchResults((prev) => {
-              return {
-                ...prev,
-                results: [...prev.results, ...moreResults.results],
-                next_page_token: moreResults?.next_page_token,
-              };
-            });
-          }
-        })();
+        handleFetchMore();
       }
     },
   });
+
+  const handleFetchMore = async () => {
+    if (searchResults?.next_page_token) {
+      const moreResults = await nextPageSearch(searchResults.next_page_token);
+      if (moreResults) {
+        setSearchResults((prev) => {
+          return {
+            ...prev,
+            results: [...prev.results, ...moreResults.results],
+            next_page_token: moreResults.next_page_token,
+          };
+        });
+      }
+    }
+  };
 
   const handleSelectRestaurant = (placeData: Place) => {
     updateSelectedRestaurant(placeData);
@@ -52,13 +54,15 @@ export default function RestaurantCardList() {
         </div>
       )}
 
-      {searchResults.status &&
-        searchResults.status !== "OK" &&
-        (searchResults.status === "ZERO_RESULTS" ? (
-          <div>Oops, we found no results for that search.</div>
-        ) : (
-          <div>Oops, something went wrong.</div>
-        ))}
+      {searchResults.status && searchResults.status !== "OK" && (
+        <div className="flex justify-center items-center">
+          <span className="text-gray-700">
+            {searchResults.status === "ZERO_RESULTS"
+              ? "Oops, we found no results for that search."
+              : "Oops, something went wrong."}
+          </span>
+        </div>
+      )}
 
       {searchResults?.results?.map((place) => (
         <div key={place.place_id} className="w-full">
