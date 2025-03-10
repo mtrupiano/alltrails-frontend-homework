@@ -24,19 +24,24 @@ export default function MapMarker({
   const isSelected = selectedRestaurant?.place_id === placeData.place_id;
 
   return (
-    <AdvancedMarker
-      position={placeData.geometry?.location}
-      onClick={handleClick}
-      zIndex={isSelected ? 9999 : fallbackZIndex}
-    >
-      <div>
-        {isSelected ? <PinSelected /> : <PinResting />}
-        {isSelected && (
-          <div className="bg-gray-200 w-[375px] rounded-2xl absolute left-1/2 transform -translate-x-1/2 -translate-y-[150px]">
-            <RestaurantCard placeData={placeData} />
-          </div>
-        )}
-      </div>
-    </AdvancedMarker>
+    <>
+      <AdvancedMarker
+        position={placeData.geometry?.location}
+        zIndex={isSelected ? 9999 : fallbackZIndex}
+      >
+        <div>
+          {isSelected ? (
+            <PinSelected className="cursor-pointer" onClick={handleClick} />
+          ) : (
+            <PinResting className="cursor-pointer" onClick={handleClick} />
+          )}
+          {isSelected && (
+            <div className="w-[375px] absolute left-1/2 transform -translate-x-1/2 -translate-y-[150px]">
+              <RestaurantCard placeData={placeData} />
+            </div>
+          )}
+        </div>
+      </AdvancedMarker>
+    </>
   );
 }

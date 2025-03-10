@@ -6,9 +6,11 @@ import RestaurantCard from "./RestaurantCard";
 import RestaurantCardSkeleton from "./RestaurantCardSkeleton";
 import { SearchResultsContext } from "../context/SearchResultsContext";
 import { nextPageSearch } from "../actions";
+import { SelectedRestaurantContext } from "../context/SelectedRestaurantContext";
+import { useMap } from "@vis.gl/react-google-maps";
 
 export default function RestaurantCardList() {
-  const { ref: spinnerRef } = useInView({
+  const { ref: skeletonLoaderRef } = useInView({
     onChange: (inView) => {
       if (inView) {
         (async function () {
@@ -30,6 +32,16 @@ export default function RestaurantCardList() {
   });
   const { searchResults, setSearchResults } = useContext(SearchResultsContext);
 
+  const { updateSelectedRestaurant } = useContext(SelectedRestaurantContext);
+  const map = useMap();
+
+  const handleSelectRestaurant = (placeData: Place) => {
+    updateSelectedRestaurant(placeData);
+    if (placeData.geometry?.location) {
+      map?.setCenter(placeData.geometry.location);
+    }
+  };
+
   return (
     <div className="h-full w-full sm:w-[480px] bg-gray-200 overflow-y-auto no-scrollbar px-6 py-8 space-y-6">
       {!searchResults.status && (
@@ -47,11 +59,17 @@ export default function RestaurantCardList() {
         ))}
 
       {searchResults?.results?.map((place) => (
-        <RestaurantCard key={place.place_id} placeData={place} />
+        <div key={place.place_id} className="w-full">
+          <RestaurantCard
+            key={place.place_id}
+            placeData={place}
+            handleSelectRestaurant={handleSelectRestaurant}
+          />
+        </div>
       ))}
 
-      {searchResults?.results?.length && searchResults?.next_page_token && (
-        <div ref={spinnerRef} className="space-y-6">
+      {searchResults?.results?.length > 0 && searchResults?.next_page_token && (
+        <div ref={skeletonLoaderRef} className="space-y-6">
           <RestaurantCardSkeleton />
           <RestaurantCardSkeleton />
           <RestaurantCardSkeleton />
