@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { APIProvider } from "@vis.gl/react-google-maps";
 
-import RestaurantCardList from "@/app/_components/RestaurantCardList";
-import Navbar from "@/app/_components/Navbar";
-import MapViewport from "@/app/_components/MapViewport";
-import ToggleMapListViewButton from "@/app/_components/ToggleMapListViewButton";
+import RestaurantCardList from "@/app/components/RestaurantCardList";
+import Navbar from "@/app/components/Navbar";
+import MapViewport from "@/app/components/MapViewport";
+import ToggleMapListViewButton from "@/app/components/ToggleMapListViewButton";
 import SelectedRestaurantContextProvider from "@/app/context/SelectedRestaurantContext";
 import SearchResultsContextProvider from "@/app/context/SearchResultsContext";
 import BookmarkedRestaurantsContextProvider from "@/app/context/BookmarkedRestaurantsContext";
