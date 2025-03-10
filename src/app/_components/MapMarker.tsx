@@ -1,10 +1,11 @@
-import { AdvancedMarker } from "@vis.gl/react-google-maps";
 import { useContext } from "react";
+import { AdvancedMarker } from "@vis.gl/react-google-maps";
+
 import { Place } from "@/types/GooglePlacesLegacyApiTypes";
 import PinResting from "@/assets/icons/pin-resting.svg";
 import PinSelected from "@/assets/icons/pin-selected.svg";
-import RestaurantCard from "./RestaurantCard";
 import { SelectedRestaurantContext } from "../context/SelectedRestaurantContext";
+import RestaurantCard from "./RestaurantCard";
 
 export default function MapMarker({
   placeData,

@@ -2,6 +2,7 @@
 
 import { FormEvent, useContext, useState } from "react";
 import { useMap } from "@vis.gl/react-google-maps";
+
 import { searchAction } from "@/app/actions";
 import SearchIcon from "@/assets/icons/search.svg";
 import { SearchResultsContext } from "../context/SearchResultsContext";

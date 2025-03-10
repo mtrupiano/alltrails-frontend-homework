@@ -2,15 +2,20 @@
 
 import { useContext } from "react";
 import { useInView } from "react-intersection-observer";
+import { useMap } from "@vis.gl/react-google-maps";
+
+import { Place } from "@/types/GooglePlacesLegacyApiTypes";
+import { SearchResultsContext } from "../context/SearchResultsContext";
+import { SelectedRestaurantContext } from "../context/SelectedRestaurantContext";
+import { nextPageSearch } from "../actions";
+
 import RestaurantCard from "./RestaurantCard";
 import RestaurantCardSkeleton from "./RestaurantCardSkeleton";
-import { SearchResultsContext } from "../context/SearchResultsContext";
-import { nextPageSearch } from "../actions";
-import { SelectedRestaurantContext } from "../context/SelectedRestaurantContext";
-import { useMap } from "@vis.gl/react-google-maps";
-import { Place } from "@/types/GooglePlacesLegacyApiTypes";
 
 export default function RestaurantCardList() {
+  const map = useMap();
+  const { searchResults, setSearchResults } = useContext(SearchResultsContext);
+  const { updateSelectedRestaurant } = useContext(SelectedRestaurantContext);
   const { ref: skeletonLoaderRef } = useInView({
     onChange: (inView) => {
       if (inView) {
@@ -31,10 +36,6 @@ export default function RestaurantCardList() {
       }
     },
   });
-  const { searchResults, setSearchResults } = useContext(SearchResultsContext);
-
-  const { updateSelectedRestaurant } = useContext(SelectedRestaurantContext);
-  const map = useMap();
 
   const handleSelectRestaurant = (placeData: Place) => {
     updateSelectedRestaurant(placeData);
