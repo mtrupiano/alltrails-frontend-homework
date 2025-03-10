@@ -18,6 +18,7 @@ export default function MapViewport() {
     useState<boolean>(false);
 
   useEffect(() => {
+    // Effect to run initial geocode only after the map is loaded
     if (!initialGeocodeCompleted && map) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
