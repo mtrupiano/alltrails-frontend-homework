@@ -16,7 +16,7 @@ export default function BookmarkButton({
     <button
       type="button"
       onClick={handleClick}
-      className="hover:bg-gray-100 transition-bg duration-200 cursor-pointer p-2 rounded-full"
+      className="hover:bg-gray-100 active:bg-gray-100 transition-all duration-200 cursor-pointer p-2 rounded-full"
     >
       {enabled ? <BookmarkSavedSvg /> : <BookmarkRestingSvg />}
     </button>
