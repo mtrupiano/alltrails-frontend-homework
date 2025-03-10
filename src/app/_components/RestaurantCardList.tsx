@@ -8,6 +8,7 @@ import { SearchResultsContext } from "../context/SearchResultsContext";
 import { nextPageSearch } from "../actions";
 import { SelectedRestaurantContext } from "../context/SelectedRestaurantContext";
 import { useMap } from "@vis.gl/react-google-maps";
+import { Place } from "@/types/GooglePlacesLegacyApiTypes";
 
 export default function RestaurantCardList() {
   const { ref: skeletonLoaderRef } = useInView({

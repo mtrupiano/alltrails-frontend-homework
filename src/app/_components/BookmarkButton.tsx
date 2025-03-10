@@ -3,7 +3,7 @@ import BookmarkRestingSvg from "@/assets/icons/bookmark-resting.svg";
 
 export default function BookmarkButton({
   enabled,
-  onClick,
+  handleClick,
 }: {
   enabled: boolean;
   handleClick: () => void;

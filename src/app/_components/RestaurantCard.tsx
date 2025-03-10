@@ -26,7 +26,7 @@ export default function RestaurantCard({
     }
   };
 
-  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
     if (handleSelectRestaurant) {
       handleSelectRestaurant(placeData);
