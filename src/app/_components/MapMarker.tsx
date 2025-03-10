@@ -38,7 +38,7 @@ export default function MapMarker({
           )}
           {isSelected && (
             <div className="w-[375px] absolute left-1/2 transform -translate-x-1/2 -translate-y-[150px]">
-              <RestaurantCard placeData={placeData} />
+              <RestaurantCard placeData={placeData} isInMapView={true} />
             </div>
           )}
         </div>

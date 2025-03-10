@@ -5,6 +5,7 @@ import { Place } from "@/types/GooglePlacesLegacyApiTypes";
 import StarIcon from "@/assets/icons/star.svg";
 import placeholderImage from "@/assets/images/restaurant-photo-placeholder.png";
 import { BookmarkedRestaurantsContext } from "@/app/context/BookmarkedRestaurantsContext";
+import { SelectedRestaurantContext } from "@/app/context/SelectedRestaurantContext";
 import BookmarkButton from "./BookmarkButton";
 
 const PHOTO_REF_URL = `https://maps.googleapis.com/maps/api/place/photo?key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_LEGACY_API_KEY}&maxheight=72&photo_reference=`;
@@ -12,15 +13,18 @@ const PHOTO_REF_URL = `https://maps.googleapis.com/maps/api/place/photo?key=${pr
 export default function RestaurantCard({
   placeData,
   handleSelectRestaurant,
+  isInMapView,
 }: {
   placeData: Place;
   handleSelectRestaurant?: (place: Place) => void;
+  isInMapView?: boolean;
 }) {
   const photoRef = placeData.photos?.[0].photo_reference;
 
   const { bookmarkedRestaurants, handleToggleBookmarkRestaurant } = useContext(
     BookmarkedRestaurantsContext,
   );
+  const { selectedRestaurant } = useContext(SelectedRestaurantContext);
 
   const handleBookmark = () => {
     if (placeData?.place_id) {
@@ -35,12 +39,14 @@ export default function RestaurantCard({
     }
   };
 
+  const isSelected = selectedRestaurant.place_id === placeData.place_id;
+
   return (
     <div
       onClick={handleClick}
-      className={`${
-        handleSelectRestaurant && "cursor-pointer"
-      } h-[104px] rounded-[16px] bg-white shadow-lg p-4 focus:ring-2 focus:ring-green-house-900 transition ease-in-out duration-200 font-manrope`}
+      className={`${!isInMapView && "cursor-pointer"} ${
+        isSelected && !isInMapView && "ring-2 ring-green-house-900"
+      } h-[104px] rounded-[16px] bg-white shadow-lg p-4 transition ease-in-out duration-200 font-manrope`}
       tabIndex={0}
     >
       <div className="flex justify-between">
